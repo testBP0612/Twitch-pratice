@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			box-sizing: border-box;
+			font-family: 微軟正黑體;
+		}
+
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		header {
+			position: fixed;
+			left: 0;
+			top: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			height: 50px;
+			background-color: lavender;
+		}
+
+		.logo {
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			margin-left: 20px;
+			background-color: lightgreen;
+		}
+
+		nav {
+			margin-left: 70px;
+		}
+
+		.menu {
+			display: flex;
+			padding: 0;
+			margin: 0;
+			list-style-type: none;
+		}
+
+		.search-bar {
+			display: flex;
+		}
+
+		.search-btn {
+			width: 35px;
+			height: 36px;
+			background-color: lightyellow;
+		}
+
+		.member {
+			display: flex;
+		}
+
+		.prime-btn {
+			width: 20px;
+			height: 20px;
+			background-color: lightsalmon;
+		}
+
+		.sign-in-sign-up {
+			display: flex;
+			padding: 0;
+			margin: 0;
+			list-style-type: none;
+		}
+
+		.core-btn {
+			width: 20px;
+			height: 20px;
+			background-color: lightskyblue;
+		}
+
+		aside {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 50px;
+			height: calc(100vh - 50px);
+			background-color: lightslategray;
+		}
+
+		main {
+			margin: 50px 0 0 50px;
+		}
+
+		.container {
+			padding: 25px 27px;
+		}
+
+		.e-sport>.row {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 6px 6px;
+		}
+
+		.e-sport>.row>.col {
+			min-width: 293px;
+		}
+
+		h1 {
+			font-size: 60px;
+			margin: 0 0 10px 0;
+		}
+
+		.e-sport-description {
+			margin-top: 0;
+			margin-bottom: 46px;
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		.game-card {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px;
+			background-color: gray;
+			border-radius: 5px;
+		}
+
+		.game-img {
+			width: 40px;
+			height: 50px;
+			background-color: hotpink;
+		}
+
+		.game-info {
+			position: relative;
+			width: 182px;
+			font-size: 13px;
+		}
+
+		.live-block {
+			height: 50px;
+		}
+
+		.live {
+			display: inline;
+			padding: 2px 6px;
+			font-weight: bold;
+			border-radius: 3px;
+			background-color: red;
+			color: white;
+			font-size: 13px;
+		}
+
+		.game-info>p {
+			margin: 0;
+		}
+
+		.stream-block {
+			display: flex;
+			margin: 0 -10px;
+		}
+
+		.highlight {
+			width: 33.33%;
+		}
+
+		.stream-block>.row {
+			display: flex;
+			flex-wrap: wrap;
+			width: 66.66%;
+			row-gap: 20px;
+		}
+
+		.stream-block>.row>.col {
+			width: 25%;
+			padding: 0 10px;
+		}
+
+		.highlight {
+			padding: 0 10px;
+		}
+
+		.highlight .thumbnail {
+			height: 331px;
+		}
+
+		.stream-group .thumbnail {
+			height: 160px;
+		}
+
+		.thumbnail {
+			position: relative;
+			width: 100%;
+			background-color: yellowgreen;
+		}
+
+		.thumbnail>.live {
+			position: absolute;
+			left: 10px;
+			top: 10px;
+		}
+
+		.audience {
+			position: absolute;
+			left: 10px;
+			bottom: 10px;
+			padding: 0 3px;
+			border-radius: 3px;
+			font-size: 13px;
+			background-color: rgba(0, 0, 0, 0.6);
+			color: white;
+		}
+
+		.stream-group {
+			font-size: 13px;
+		}
+
+		.streamer {
+			display: flex;
+			align-items: center;
+			margin-top: 10px;
+		}
+
+		.avatar {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background-color: steelblue;
+		}
+
+		.name {
+			padding: 0 5px;
+		}
+
+		.stream-title {
+			width: 100%;
+			margin-top: 5px;
+			font-weight: bold;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+		}
+
+		.stream-game {
+			margin-top: 5px;
+		}
+
+		@media screen and (max-width: 1200px) {
+			.stream-block>.row>.col {
+				max-width: 50%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div class="logo"></div>
+		<nav>
+			<ul class="menu">
+				<li class="menu-btn">
+					<a href="">
+						瀏覽
+					</a>
+				</li>
+				<li class="menu-btn">
+					<a href="">
+						⋯
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="search-bar">
+			<input type="text" class="search-input">
+			<div class="search-btn"></div>
+		</div>
+
+		<div class="member">
+			<div class="prime-btn"></div>
+			<ul class="sign-in-sign-up">
+				<li class="sign-in">
+					<a href="">
+						登入
+					</a>
+				</li>
+				<li class="sign-up">
+					<a href="">
+						註冊
+					</a>
+				</li>
+			</ul>
+			<div class="core-btn"></div>
+		</div>
+	</header>
+
+	<aside>
+
+	</aside>
+
+	<main>
+		<div class="container">
+			<div class="e-sport">
+				<h1>電競</h1>
+				<p class="e-sport-description">
+					即時賽況、賽事精華和您最愛的職業玩家都在這裡
+				</p>
+				<div class="row">
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									Counter-Strike: Global Offensive
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="game-card">
+							<div class="game-img"></div>
+							<div class="game-info">
+								<p class="game-name">
+									League of Legends
+								</p>
+								<p class="sub-info">
+									觀眾人數：1,880
+								</p>
+							</div>
+							<div class="live-block">
+								<div class="live">LIVE</div>
+							</div>
+						</div>
+					</div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+				</div>
+			</div>
+
+			<div class="streaming">
+				<h2>實況中的對戰</h2>
+				<p class="live-description">我們認為您會喜歡的最精彩 Live 比賽和對戰</p>
+				<div class="stream-block">
+					<div class="highlight">
+						<div class="stream-card">
+							<div class="thumbnail">
+								<div class="live">LIVE</div>
+								<div class="audience">觀眾人數：1,651</div>
+							</div>
+							<div class="stream-info">
+								<div class="streamer">
+									<div class="avatar"></div>
+									<div class="name">DreamHackCS2</div>
+								</div>
+								<div class="stream-title">
+									RERUN: Eternal Fire vs. Movistar Riders [Nuke] Map 1 - IEM Fall Closed Qualifiers
+									2021 - EU - Upper Bracket
+								</div>
+								<div class="stream-game">Counter-Strike: Global Offensive • 英文</div>
+							</div>
+						</div>
+					</div>
+					<div class="row stream-group">
+						<div class="col">
+							<div class="stream-card">
+								<div class="thumbnail">
+									<div class="live">LIVE</div>
+									<div class="audience">觀眾人數：1,651</div>
+								</div>
+								<div class="stream-info">
+									<div class="streamer">
+										<div class="avatar"></div>
+										<div class="name">DreamHackCS2</div>
+									</div>
+									<div class="stream-title">
+										RERUN: Eternal Fire vs. Movistar Riders [Nuke] Map 1 - IEM Fall Closed
+										Qualifiers 2021 - EU - Upper Bracket
+									</div>
+									<div class="stream-game">Counter-Strike: Global Offensive • 英文</div>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="stream-card">
+								<div class="thumbnail">
+									<div class="live">LIVE</div>
+									<div class="audience">觀眾人數：1,651</div>
+								</div>
+								<div class="stream-info">
+									<div class="streamer">
+										<div class="avatar"></div>
+										<div class="name">DreamHackCS2</div>
+									</div>
+									<div class="stream-title">
+										RERUN: Eternal Fire vs. Movistar Riders [Nuke] Map 1 - IEM Fall Closed
+										Qualifiers 2021 - EU - Upper Bracket
+									</div>
+									<div class="stream-game">Counter-Strike: Global Offensive • 英文</div>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="stream-card">
+								<div class="thumbnail">
+									<div class="live">LIVE</div>
+									<div class="audience">觀眾人數：1,651</div>
+								</div>
+								<div class="stream-info">
+									<div class="streamer">
+										<div class="avatar"></div>
+										<div class="name">DreamHackCS2</div>
+									</div>
+									<div class="stream-title">
+										RERUN: Eternal Fire vs. Movistar Riders [Nuke] Map 1 - IEM Fall Closed
+										Qualifiers 2021 - EU - Upper Bracket
+									</div>
+									<div class="stream-game">Counter-Strike: Global Offensive • 英文</div>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="stream-card">
+								<div class="thumbnail">
+									<div class="live">LIVE</div>
+									<div class="audience">觀眾人數：1,651</div>
+								</div>
+								<div class="stream-info">
+									<div class="streamer">
+										<div class="avatar"></div>
+										<div class="name">DreamHackCS2</div>
+									</div>
+									<div class="stream-title">
+										RERUN: Eternal Fire vs. Movistar Riders [Nuke] Map 1 - IEM Fall Closed
+										Qualifiers 2021 - EU - Upper Bracket
+									</div>
+									<div class="stream-game">Counter-Strike: Global Offensive • 英文</div>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="stream-card">
+								<div class="thumbnail">
+									<div class="live">LIVE</div>
+									<div class="audience">觀眾人數：1,651</div>
+								</div>
+								<div class="stream-info">
+									<div class="streamer">
+										<div class="avatar"></div>
+										<div class="name">DreamHackCS2</div>
+									</div>
+									<div class="stream-title">
+										RERUN: Eternal Fire vs. Movistar Riders [Nuke] Map 1 - IEM Fall Closed
+										Qualifiers 2021 - EU - Upper Bracket
+									</div>
+									<div class="stream-game">Counter-Strike: Global Offensive • 英文</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>
